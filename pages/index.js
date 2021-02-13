@@ -1,6 +1,7 @@
+import { useState } from 'react'
+import axios from 'axios'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { useState } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Calendar from 'react-calendar'
 import Button from '@material-ui/core/Button'
@@ -23,11 +24,15 @@ export default function Home () {
   const onSubmit = () => {
     const packObj = {
       location: location,
-      coldtemp: coldtemp,
+      cold: coldtemp,
       firstday: firstday,
       lastday: lastday
     }
     console.log(packObj)
+    axios.post('http://localhost:8080/search', packObj)
+      .then((res) => {
+        console.log(res)
+      })
   }
 
   return (
