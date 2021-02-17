@@ -8,18 +8,23 @@ import Button from '@material-ui/core/Button'
 import 'react-calendar/dist/Calendar.css'
 
 // import ClothingCard from '../components/clothingcard'
-// import WeatherCard from '../components/weathercard'
+import WeatherCard from '../components/weathercard'
 
 export default function Home () {
   const [location, setLocation] = useState('')
   const [coldtemp, setColdTemp] = useState(0)
   const [firstday, onChange] = useState(new Date())
   const [lastday, onChange2] = useState(new Date())
+  const [data, setData] = useState(null)
+  const [isPending, setIsPending] = useState(true)
+  const [error, setError] = useState(null)
   // const [firstday, setFirstDay] = useState(null)
   // const [lastday, setLastDay] = useState('')
 
   // console.log('Updating Arrival Date to' + firstday)
   // console.log('Updating Departure Date to' + lastday)
+
+  console.log(data)
 
   const onSubmit = () => {
     const packObj = {
@@ -31,7 +36,14 @@ export default function Home () {
     console.log(packObj)
     axios.post('http://localhost:8080/search', packObj)
       .then((res) => {
-        console.log(res)
+        setIsPending(false)
+        setData(res)
+        setError(null)
+        console.log(data)
+      })
+      .catch(err => {
+        setIsPending(false)
+        setError(err.message)
       })
   }
 
@@ -54,6 +66,7 @@ export default function Home () {
         </div>
         <br />
         <span>What is your destination?</span>
+        {/* <div className={styles.grid}> */}
         <TextField
           label='Destination'
           variant='outlined'
@@ -73,6 +86,7 @@ export default function Home () {
           value={coldtemp}
           onChange={(e) => setColdTemp(e.target.value)}
         />
+        {/* </div> */}
         <br />
         <span>What is your Arrival Date?</span>
         <Calendar
@@ -98,6 +112,10 @@ export default function Home () {
         <WeatherCard /> */}
       </main>
       <form />
+      {error && <div><h1>{error}</h1></div>}
+      {isPending && <div>Loading Search Results!</div>}
+      {data && <WeatherCard props={data} />}
+
     </div>
   )
 }

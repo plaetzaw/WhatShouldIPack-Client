@@ -11,6 +11,7 @@
     "@material-ui/core": "^4.11.3",
     "axios": "^0.21.1",
     "next": "10.0.6",
+    "primeflex": "^2.0.0",
     "primereact": "^6.0.2",
     "react": "17.0.1",
     "react-calendar": "^3.3.1",
