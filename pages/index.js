@@ -16,15 +16,8 @@ export default function Home () {
   const [firstday, onChange] = useState(new Date())
   const [lastday, onChange2] = useState(new Date())
   const [data, setData] = useState(null)
-  const [isPending, setIsPending] = useState(true)
+  const [isPending, setIsPending] = useState(null)
   const [error, setError] = useState(null)
-  // const [firstday, setFirstDay] = useState(null)
-  // const [lastday, setLastDay] = useState('')
-
-  // console.log('Updating Arrival Date to' + firstday)
-  // console.log('Updating Departure Date to' + lastday)
-
-  console.log(data)
 
   const onSubmit = () => {
     const packObj = {
@@ -55,18 +48,18 @@ export default function Home () {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
+        <h1>
           Welcome to WhatShouldIPack!
         </h1>
         <div className={styles.description}>
-          <h2> Tomorrow you are leaving on a week long trip, and you haven't even started packing yet!
-          </h2>
+          <p>Do you have a trip coming up?</p>
+          <p>And no idea what to pack?</p>
           <p>We've got you covered</p>
 
         </div>
         <br />
-        <span>What is your destination?</span>
-        {/* <div className={styles.grid}> */}
+        <span>Destination or Zipcode</span>
+        <br/>
         <TextField
           label='Destination'
           variant='outlined'
@@ -76,6 +69,7 @@ export default function Home () {
 
         <br />
         <span>What Temperature do you feel cold at?</span>
+        <br/>
         <TextField
           label='Temperate *F'
           type='number'
@@ -86,11 +80,9 @@ export default function Home () {
           value={coldtemp}
           onChange={(e) => setColdTemp(e.target.value)}
         />
-        {/* </div> */}
         <br />
         <span>What is your Arrival Date?</span>
         <Calendar
-          // label='Departure Date'
           value={firstday}
           onChange={onChange}
         />
@@ -100,16 +92,11 @@ export default function Home () {
           value={lastday}
           onChange={onChange2}
         />
-        <br />
-        {location}
-        <br />
-        {coldtemp}*F
+
         <br />
         <Button variant='contained' color='primary' onClick={onSubmit}>
-          Submit
+          Help Me Pack!
         </Button>
-        {/* <ClothingCard />
-        <WeatherCard /> */}
       </main>
       <form />
       {error && <div><h1>{error}</h1></div>}

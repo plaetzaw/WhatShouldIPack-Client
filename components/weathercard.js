@@ -4,7 +4,11 @@ import { Card } from 'primereact/card'
 import styles from '../styles/Home.module.css'
 
 const WeatherCard = ({ props }) => {
-  const weathers = props.data.weather.days.map((day) => {
+  const conditions = props.data.weather.currentConditions
+  const weather = props.data.weather
+  const clothing = props.data
+
+  const weathers = weather.days.map((day) => {
     return (
       <Card
         key={day.datetime}
@@ -23,29 +27,31 @@ const WeatherCard = ({ props }) => {
     )
   })
 
-  const alerts = props.data.weather.alerts.map((alert) => {
+  const alerts = weather.alerts.map((alert) => {
     return (
+      <><h1>Weather alerts for your trip</h1>
       <Card
         className={styles.card}
         key={alert.id}
       >
-        {alert.headline}
+        <p>{alert.headline}</p>
         <br />
-        {alert.description}
-        <br />
-        {alert.ends}
-        <br />
-        {/* {alert.event} */}
-        {/* {alert.id} */}
-        {alert.link}
+        <p>{alert.description}</p>
       </Card>
+      </>
     )
   })
   return (
     <>
-      <h1>Current Conditions in {props.data.weather.address}</h1>
       {alerts}
-      <h1>Your Trip ForeCast</h1>
+      <h1>Packing Recommendations</h1>
+      <p>There are {clothing.coldcount} days that will feel cold for you</p>
+      <p>There are {clothing.warmcount} days that will feel warm for you</p>
+      <p>There are {clothing.raincount} days with rain in the forecast</p>
+      <p>There are {clothing.snowcount} days with snow in the forecast</p>
+
+
+      <h1>Your Trip Forecast</h1>
       <div className={styles.grid}>
         {weathers}
       </div>
