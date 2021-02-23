@@ -27,23 +27,23 @@ const WeatherCard = ({ props }) => {
     )
   })
 
-  const alerts = weather.alerts.map((alert) => {
-    return (
-      <><h1>Weather alerts for your trip</h1>
-      <Card
-        className={styles.card}
-        key={alert.id}
-      >
-        <p>{alert.headline}</p>
-        <br />
-        <p>{alert.description}</p>
-      </Card>
-      </>
-    )
-  })
+  // const alerts = weather.alerts.map((alert) => {
+  //   return (
+  //     <><h1>Weather alerts for your trip</h1>
+  //     <Card
+  //       className={styles.card}
+  //       key={alert.id}
+  //     >
+  //       <p>{alert.headline}</p>
+  //       <br />
+  //       <p>{alert.description}</p>
+  //     </Card>
+  //     </>
+  //   )
+  // })
   return (
     <>
-      {alerts}
+      {/* {alerts} */}
       <h1>Packing Recommendations</h1>
       <p>There are {clothing.coldcount} days that will feel cold for you</p>
       <p>There are {clothing.warmcount} days that will feel warm for you</p>

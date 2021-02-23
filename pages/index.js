@@ -27,7 +27,7 @@ export default function Home () {
       lastday: lastday
     }
     console.log(packObj)
-    axios.post('http://localhost:8080/search', packObj)
+    axios.post('https://whatshouldipack.herokuapp.com/search/', packObj)
       .then((res) => {
         setIsPending(false)
         setData(res)
